@@ -1,11 +1,19 @@
 import * as React from "react";
-import { Login, Home, Page1, Page2 } from "./screens";
+import { Login, Forbidden, Home, Page1, Page2 } from "./screens";
 import {AutorizedRoute} from './AutorizedRoute';
 
 export const routes = [
     {
         path: "login",
         element: <Login />
+    },
+    {
+        path: "*",
+        element: <NotFound />
+    },
+    {
+        path: "forbidden",
+        element: <Forbidden />
     },
     {
         path: "",

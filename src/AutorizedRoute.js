@@ -6,15 +6,16 @@ export const AutorizedRoute = ({ component, roles }) => {
     let location = useLocation();
     let resolvedLocation = useResolvedPath(location);
 
+    // Check if user logged in 
+    const user = { username: 'admin' };
+    if (!user) {
+        return <Navigate to="/login" state={{ path: resolvedLocation }} />;
+    }
+
     // Getting user and his role from storage 
     const userRole = 'ADMIN';
-
-    console.info(userRole);
-    console.info(roles);
-    console.info(roles.includes(userRole));
-
     if (!roles.includes(userRole)) {
-        return <Navigate to="/login" state={{ path: resolvedLocation }} />;
+        return <Navigate to="/forbidden" />;
     }
 
     return (
